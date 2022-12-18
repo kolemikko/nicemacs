@@ -1,5 +1,3 @@
-(setq inhibit-startup-message t)
-
 (require 'package)
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
@@ -39,23 +37,8 @@
 (dolist (mode '(org-mode-hook
                 term-mode-hook
                 shell-mode-hook
-                treemacs-mode-hook
                 eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
-
-(set-default-coding-systems 'utf-8)
-(global-auto-revert-mode 1)
-(setq global-auto-revert-non-file-buffers t)
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-
-(context-menu-mode 1)
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(setq-default mode-line-format nil)
-(setq visible-bell 1)
-
-(set-frame-parameter (selected-frame) 'fullscreen 'maximized)
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (use-package all-the-icons
   :if (display-graphic-p))
@@ -63,7 +46,6 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (use-package no-littering)
-
 (setq auto-save-file-name-transforms
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 
@@ -74,11 +56,11 @@
   (setq which-key-idle-delay 0.05))
 
 (use-package vertico
-    :bind
-    :custom
-    (vertico-cycle t)
-    :init
-    (vertico-mode))
+  :bind
+  :custom
+  (vertico-cycle t)
+  :init
+  (vertico-mode))
 
 (use-package dashboard
   :init
@@ -100,6 +82,7 @@
 
 ;; requires ispell on macos and hunspell on linux
 (use-package flyspell
+  :defer t
   :hook (text-mode . flyspell-mode))
 
 ;; Org mode
