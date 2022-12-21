@@ -62,6 +62,21 @@
   :init
   (vertico-mode))
 
+(use-package marginalia
+  :after vertico
+  :custom
+  (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+  :init
+  (marginalia-mode))
+
+(use-package savehist
+  :init
+  (setq history-length 20)
+  (savehist-mode 1))
+
+(use-package orderless
+  :custom (completion-styles '(orderless)))
+
 (use-package dashboard
   :init
   (add-hook 'after-init-hook 'dashboard-refresh-buffer)
@@ -134,6 +149,35 @@
  '(org-table ((t (:inherit 'default :foreground "#83a598"))))
  '(org-tag ((t (:inherit (shadow default) :weight bold :height 0.8))))
  '(org-verbatim ((t (:inherit (shadow default))))))
+
+(use-package treemacs
+  :defer t
+  :config
+  (progn
+    (setq treemacs-display-in-side-window t
+	  treemacs-file-follow-delay 0.2
+	  treemacs-follow-after-init t
+	  treemacs-expand-after-init t
+	  treemacs-indentation 2
+	  treemacs-indentation-string " "
+	  treemacs-no-delete-other-windows t
+	  treemacs-is-never-other-window t
+	  treemacs-project-follow-cleanup nil
+	  treemacs-position 'left
+	  treemacs-recenter-distance 0.1
+	  treemacs-recenter-after-project-jump 'always
+	  treemacs-recenter-after-project-expand 'on-distance
+	  treemacs-show-hidden-files t
+	  treemacs-sorting 'alphabetic-asc
+	  treemacs-select-when-already-in-treemacs 'move-back
+	  treemacs-user-mode-line-format t
+	  treemacs-width 32
+	  treemacs-width-is-initially-locked nil)
+  
+    (treemacs-resize-icons 15)
+    (treemacs-project-follow-mode t)
+    (treemacs-filewatch-mode t)
+    (treemacs-fringe-indicator-mode 'always)))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
