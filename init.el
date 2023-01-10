@@ -97,14 +97,14 @@
 
 ;; requires ispell on macos and hunspell on linux
 (use-package flyspell
-  :defer t
-  :hook (text-mode . flyspell-mode))
+  :defer t)
 
 ;; Org mode
  (setq org-startup-indented t
           org-pretty-entities t
           org-hide-emphasis-markers t
           org-startup-with-inline-images t
+	  org-startup-folded 'content
           org-image-actual-width '(300))
 (add-hook 'org-mode-hook 'visual-line-mode)
 
